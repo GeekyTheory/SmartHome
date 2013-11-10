@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartHome</string>
+    <string name="error">Error</string>
+    <string name="error_format">[Error] %s</string>
+</resources>

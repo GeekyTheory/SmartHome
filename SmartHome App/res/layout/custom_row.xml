@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="?android:attr/listPreferredItemHeight" >
+
+    <LinearLayout
+            android:id="@+id/linear01"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/card_background"
+            android:orientation="vertical" >
+
+        <Switch
+            android:id="@+id/on_off_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textOff="OFF"
+            android:textOn="ON" />
+
+            <!--<TextView
+                    android:id="@+id/titleItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="TITLE"/>
+
+            <Switch
+                    android:id="@+id/on_off_switch"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:textOff="OFF"
+                    android:textOn="ON"
+                     /> -->
+        </LinearLayout>
+
+</FrameLayout>
