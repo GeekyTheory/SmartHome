@@ -1,4 +1,4 @@
 SmartHome
 =========
 
-Proyecto para una casa domótica con Arduino, xBee, Raspberry Pi y Android.
+SmartHome - Arduino, xBee, Raspberry Pi and Android.
