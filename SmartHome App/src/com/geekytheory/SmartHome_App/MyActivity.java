@@ -3,6 +3,7 @@ package com.geekytheory.SmartHome_App;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,22 +16,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 
 /**
- * Author: Mario Pérez Esteso
- * Website: http://geekytheory.com
- * Mail: mario@geekytheory.com
+ * Author: Mario Pérez Esteso Website: http://geekytheory.com Mail:
+ * mario@geekytheory.com
  */
 
 public class MyActivity extends SherlockFragmentActivity {
 
 	private final int GET_JSON = 0;
 	private final int UPDATE_DATABASE = 1;
-
+	boolean refresh = false;
 	SherlockFragmentActivity activity = this;
 	MyCustomAdapter adapter = null;
 
@@ -76,26 +77,25 @@ public class MyActivity extends SherlockFragmentActivity {
 	}
 
 	public void refreshView() {
-		Log.i("MATRIXSIZE", matrixList.size() + "");
-		for (int i = 0; i < matrixList.size(); i++) {
-			adapterList.add(new MyCustomAdapter(this, R.layout.custom_row,
-					matrixList.get(i)));
+		if (refresh) {
+			Log.i("MATRIXSIZE", matrixList.size() + "");
+			for (int i = 0; i < matrixList.size(); i++) {
+				adapterList.add(new MyCustomAdapter(this, R.layout.custom_row,
+						matrixList.get(i)));
+			}
+			tabTitles();
 
+			setContentView(R.layout.simple_tabs);
+
+			mAdapter = new TestFragmentAdapter(getSupportFragmentManager(),
+					this);
+
+			mPager = (ViewPager) findViewById(R.id.pager);
+			mPager.setAdapter(mAdapter);
+
+			mIndicator = (TitlePageIndicator) findViewById(R.id.indicator);
+			mIndicator.setViewPager(mPager);
 		}
-		tabTitles();
-		// private static final String[] CONTENT = new String[] {
-		// "Lista de Mario", "Lista 2"};
-
-		setContentView(R.layout.simple_tabs);
-
-		mAdapter = new TestFragmentAdapter(getSupportFragmentManager(), this);
-
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mPager.setAdapter(mAdapter);
-
-		mIndicator = (TitlePageIndicator) findViewById(R.id.indicator);
-		mIndicator.setViewPager(mPager);
-
 	}
 
 	public void launchAbout() {
@@ -121,11 +121,14 @@ public class MyActivity extends SherlockFragmentActivity {
 			super(context, textViewResourceId, deviceItemList);
 			this.customDeviceItemList = new ArrayList<DeviceItem>();
 			this.customDeviceItemList.addAll(deviceItemList);
-			// Log.i("DEVICE_ITEM_LIST", deviceItemList.size()+"");
+			// Log.i("DEVICE_ITEM_LIST",
+			// this.customDeviceItemList.get(0).title+"");
+
 		}
 
 		private class ViewHolder {
 			Switch switchItem;
+			TextView textItem, textItemTemp;
 		}
 
 		@Override
@@ -142,7 +145,10 @@ public class MyActivity extends SherlockFragmentActivity {
 				holder = new ViewHolder();
 				holder.switchItem = (Switch) convertView
 						.findViewById(R.id.on_off_switch);
-
+				holder.textItem = (TextView) convertView
+						.findViewById(R.id.tempItem);
+				holder.textItemTemp = (TextView) convertView
+						.findViewById(R.id.tempItem2);
 				convertView.setTag(holder);
 
 				holder.switchItem
@@ -166,9 +172,30 @@ public class MyActivity extends SherlockFragmentActivity {
 				holder = (ViewHolder) convertView.getTag();
 			}
 			DeviceItem deviceItem = customDeviceItemList.get(position);
-			holder.switchItem.setText(deviceItem.getTitle());
-			holder.switchItem.setChecked(deviceItem.isOn());
-			holder.switchItem.setTag(deviceItem);
+			if (deviceItem.getTitle().substring(0, 3).equals("LED")) {
+				holder.switchItem.setText(deviceItem.getTitle());
+				holder.switchItem.setChecked(deviceItem.isOn());
+				holder.switchItem.setTag(deviceItem);
+				holder.textItem.setVisibility(View.GONE);
+				holder.textItemTemp.setVisibility(View.GONE);
+			} else {
+				holder.switchItem.setEnabled(false);
+				holder.switchItem.setVisibility(View.GONE);
+				// holder.textItem.setText(deviceItem.title);
+				holder.textItemTemp.setText(deviceItem.title + " ºC");
+				float temp = Float.parseFloat(deviceItem.title);
+				if (temp > 28.00) {
+					holder.textItemTemp.setTextColor(Color.RED);
+				} else if (temp <= 28.00 && temp > 23.00) {
+					holder.textItemTemp.setTextColor(Color.rgb(255, 71, 10));
+				} else if (temp <= 23.00 && temp > 19.00) {
+					holder.textItemTemp.setTextColor(Color.rgb(0, 153, 0));
+				} else if (temp <= 19.00 && temp > 10.00) {
+					holder.textItemTemp.setTextColor(Color.rgb(0, 0, 153));
+				} else {
+					holder.textItemTemp.setTextColor(Color.rgb(0, 153, 204));
+				}
+			}
 			return convertView;
 		}
 

@@ -1254,6 +1254,7 @@ containing a value of this type.
         public static final int vpi__tab_unselected_pressed_holo=0x7f02007a;
     }
     public static final class id {
+        public static final int RelativeLayout01=0x7f04003b;
         public static final int abs__action_bar=0x7f040025;
         public static final int abs__action_bar_container=0x7f040024;
         public static final int abs__action_bar_subtitle=0x7f040016;
@@ -1297,20 +1298,22 @@ containing a value of this type.
         public static final int disableHome=0x7f04000e;
         public static final int edit_query=0x7f04002b;
         public static final int homeAsUp=0x7f04000b;
-        public static final int indicator=0x7f04003b;
+        public static final int indicator=0x7f04003e;
         public static final int linear01=0x7f040039;
         public static final int list=0x7f040038;
         public static final int listMode=0x7f040007;
-        public static final int menu_about=0x7f04003e;
-        public static final int menu_refresh=0x7f04003d;
+        public static final int menu_about=0x7f040041;
+        public static final int menu_refresh=0x7f040040;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040006;
         public static final int on_off_switch=0x7f04003a;
-        public static final int pager=0x7f04003c;
+        public static final int pager=0x7f04003f;
         public static final int showCustom=0x7f04000d;
         public static final int showHome=0x7f04000a;
         public static final int showTitle=0x7f04000c;
         public static final int tabMode=0x7f040008;
+        public static final int tempItem=0x7f04003c;
+        public static final int tempItem2=0x7f04003d;
         public static final int text=0x7f040037;
         public static final int top=0x7f040004;
         public static final int triangle=0x7f040001;
