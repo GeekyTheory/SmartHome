@@ -3,6 +3,7 @@ package com.geekytheory.SmartHome_App;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.viewpagerindicator.PageIndicator;
@@ -67,10 +69,14 @@ public class MyActivity extends SherlockFragmentActivity {
 			com.actionbarsherlock.view.MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_refresh:
-			AsyncLoadTasks.run(this, GET_JSON, 0, "", "");
+			// AsyncLoadTasks.run(this, GET_JSON, 0, "", "");
+			Toast.makeText(
+					this.activity,
+					"Sorry for the inconveniences, but this function has not been implemented yet.",
+					Toast.LENGTH_LONG).show();
 			break;
 		case R.id.menu_about:
-			// clearCompleted();
+			launchAbout();
 			break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -99,9 +105,8 @@ public class MyActivity extends SherlockFragmentActivity {
 	}
 
 	public void launchAbout() {
-		/*
-		 * Intent i = new Intent(this, AddNewItem.class); startActivity(i);
-		 */
+		Intent i = new Intent(this, About.class);
+		startActivity(i);
 	}
 
 	public void tabTitles() {

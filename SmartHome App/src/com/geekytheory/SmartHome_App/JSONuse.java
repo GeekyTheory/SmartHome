@@ -79,8 +79,7 @@ public class JSONuse {
 		try {
 			// Add your data
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
-			nameValuePairs.add(new BasicNameValuePair("ID", id + "")); // POST
-																		// Values
+			nameValuePairs.add(new BasicNameValuePair("ID", id + "")); // POST															// Values
 			nameValuePairs.add(new BasicNameValuePair("ATR", atr));
 			nameValuePairs.add(new BasicNameValuePair("VALUE", value));
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));

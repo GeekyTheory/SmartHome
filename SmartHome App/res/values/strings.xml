@@ -3,4 +3,5 @@
     <string name="app_name">SmartHome</string>
     <string name="error">Error</string>
     <string name="error_format">[Error] %s</string>
+    <string name="desc">My name is Mario Pérez Esteso. With this app I want to show you the way I have developed a domotic house project called SmartHome. This is totally open source so you can download my code and schematics from GitHub.</string>
 </resources>
