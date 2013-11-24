@@ -36,6 +36,15 @@ def writeToArduino(value):
 		bus.write_byte(address, ord(n))
 	return -1
 
+def updateTemp(myString):
+	try:
+		values = myString.split()
+		sql = "UPDATE Devices SET TEMPERATURE="+str(values[2])+" WHERE ID="+str(values[1])+""
+		cursor.execute(sql)
+	except:
+		print "Read Data Error"
+	return 0
+
 def readChar():
 	readedChar = bus.read_byte(address)
 	return chr(readedChar)
@@ -65,9 +74,11 @@ while True:
 			for i in range(0, 12):
 				data += readChar()
 			print data
+			updateTemp(data+"")
 			time.sleep(1);
 			break
 		
 		time.sleep(3)
 db.close()
 arduino.close()
+
